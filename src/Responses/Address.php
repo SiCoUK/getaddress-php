@@ -34,7 +34,7 @@ class Address
      */
     public function __construct($address)
     {
-        $this->address = explode(',', $address);
+        $this->address = array_map('trim', explode(',', $address));
     }
 
     /**
