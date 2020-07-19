@@ -150,17 +150,17 @@ class Address
     /**
      * Returns a string based on the address
      *
-     * @param boolean $removeEmptyElements Prevents strings having conjoining commas
-     *
+     * @param bool $keepEmptyElements Keep the empty elements in the string, will produce conjoining commas with empty values
      * @return string
      */
-    public function toString($removeEmptyElements = false)
+    public function toString($keepEmptyElements = false)
     {
-        if (!$removeEmptyElements) {
-            return implode(',', $this->address);
+        if (!$keepEmptyElements) {
+            // Do not include empty elements
+            return implode(', ', array_filter($this->address));
         }
-
-        return trim(preg_replace('/,+/', ',', $this->toString()), ',');
+        return implode(', ', $this->address);
+        //return trim(preg_replace('/,+/', ', ', $this->toString()), ',');
     }
 
     /**
