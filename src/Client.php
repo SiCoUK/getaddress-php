@@ -139,7 +139,9 @@ class Client
      */
     public function find($postcode, $propertyNumber = null, $sortNumerically = true)
     {
-        $this->querystring['sort'] = (int) $sortNumerically;
+        $this->querystring['sort'] = $sortNumerically ? 'true' : 'false'; // This must be a string boolean as the api doesn't support numeric booleans
+        //$this->querystring['expand'] = $expand ? 'true' : 'false'; // Returns named array parts of the address & array of formatted address
+        //$this->querystring['format'] = '$format ? 'true' : 'false'; // Returns an array of the address (use format or expand, not both)
 
         $url = sprintf('find/%s', $postcode);
 
